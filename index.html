@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Reminder Form</title>
+  <style>
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Container styling */
+    #container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e9ecef;
+    }
+
+    /* Title styling */
+    #title_container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #title_container h1 {
+      margin: 0;
+      color: #007BFF;
+      font-size: 24px;
+    }
+
+    #title_container p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Form container styling */
+    #form_container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #007BFF;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+    /* Button styling */
+    #button_container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="title_container">
+      <h1>Reminder</h1>
+      <p>Set reminders for daily medications or activities.</p>
+    </div>
+
+    <div id="form_container">
+      <!-- Reminder 1 -->
+      <div class="form-group">
+        <label for="time1">Time for Reminder 1:</label>
+        <input id="time1" type="time" id="time1" required>
+        <label for="reason1">Reason for Reminder 1:</label>
+        <input id="reason1" type="text" id="reason1" placeholder="Enter the reason..." required>
+      </div>
+
+      <!-- Reminder 2 -->
+      <div class="form-group">
+        <label for="time2">Time for Reminder 2:</label>
+        <input id="time2" type="time" id="time2" required>
+        <label for="reason2">Reason for Reminder 2:</label>
+        <input id="reason2" type="text" id="reason2" placeholder="Enter the reason..." required>
+      </div>
+
+      <!-- Reminder 3 -->
+      <div class="form-group">
+        <label for="time3">Time for Reminder 3:</label>
+        <input id="time3" type="time" id="time3" required>
+        <label for="reason3">Reason for Reminder 3:</label>
+        <input id="reason3" type="text" id="reason3" placeholder="Enter the reason..." required>
+      </div>
+
+      <!-- Reminder 4 -->
+      <div class="form-group">
+        <label for="time4">Time for Reminder 4:</label>
+        <input id="time4" type="time" id="time4" required>
+        <label for="reason4">Reason for Reminder 4:</label>
+        <input id="reason4" type="text" id="reason4" placeholder="Enter the reason..." required>
+      </div>
+
+      <!-- Reminder 5 -->
+      <div class="form-group">
+        <label for="time5">Time for Reminder 5:</label>
+        <input id="time5" type="time" id="time5" required>
+        <label for="reason5">Reason for Reminder 5:</label>
+        <input id="reason5" type="text" id="reason5" placeholder="Enter the reason..." required>
+      </div>
+
+      <!-- Reminder 6 -->
+      <div class="form-group">
+        <label for="time6">Time for Reminder 6:</label>
+        <input id="time6" type="time" id="time6" required>
+        <label for="reason6">Reason for Reminder 6:</label>
+        <input id="reason6" type="text" id="reason6" placeholder="Enter the reason..." required>
+      </div>
+    </div>
+
+    <div id="button_container">
+      <button onclick="setReminders()">Set Daily Reminders</button>
+    </div>
+  </div>
+
+
+  <!-- Remove the existing Firebase script tags and replace with these -->
+<script type="module">
+  // Import Firebase functions
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDoCeMoF32Ttk1SLqh1PSQOYFBNUob-7O0",
+  authDomain: "okthis.firebaseapp.com",
+  databaseURL: "https://okthis-default-rtdb.firebaseio.com",
+  projectId: "okthis",
+  storageBucket: "okthis.firebasestorage.app",
+  messagingSenderId: "221146980015",
+  appId: "1:221146980015:web:bc5937d05ebab073ffbe5a"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
+  // Make setReminders available globally
+  window.setReminders = function() {
+    const reminders = [];
+    for (let i = 1; i <= 6; i++) {
+      const time = document.getElementById(`time${i}`).value;
+      const reason = document.getElementById(`reason${i}`).value;
+
+      if (time && reason) {
+        reminders.push({ time, reason });
+      }
+    }
+
+    if (reminders.length === 0) {
+      alert("Please fill out at least one reminder.");
+      return;
+    }
+
+    reminders.forEach((reminder) => {
+      const now = new Date();
+      const reminderTime = new Date();
+      reminderTime.setHours(...reminder.time.split(":"), 0, 0);
+
+      if (reminderTime < now) {
+        reminderTime.setDate(reminderTime.getDate() + 1);
+      }
+
+      const delay = reminderTime - now;
+      setTimeout(function triggerReminder() {
+        alert(`Reminder: ${reminder.reason}`);
+        setTimeout(triggerReminder, 24 * 60 * 60 * 1000); // Repeat daily
+      }, delay);
+    });
+
+    let reason1 = document.getElementById("reason1").value;
+    let reason2 = document.getElementById("reason2").value;
+    let reason3 = document.getElementById("reason3").value;
+    let reason4 = document.getElementById("reason4").value;
+    let reason5 = document.getElementById("reason5").value;
+    let reason6 = document.getElementById("reason6").value;
+    let time1 = document.getElementById("time1").value;
+    let time2 = document.getElementById("time2").value;
+    let time3 = document.getElementById("time3").value;
+    let time4 = document.getElementById("time4").value;
+    let time5 = document.getElementById("time5").value;
+    let time6 = document.getElementById("time6").value;
+
+    // Save to Firebase
+    set(ref(database, 'usersdskvj'), {
+      reason1: reason1,
+      time1: time1,
+      reason2: reason2,
+      time2: time2,
+      reason3: reason3,
+      time3: time3,
+      reason4: reason4,
+      time4: time4,
+      reason5: reason5,
+      time5: time5,
+      reason6: reason6,
+      time6: time6
+    });
+
+    alert("Reminders have been set!");
+  };
+</script>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
+</body>
+</html>
