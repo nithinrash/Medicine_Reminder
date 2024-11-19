@@ -6,7 +6,9 @@
   <title>Medical Reminder Form</title>
   <style>
     /* General body styling */
-    body {
+   
+        /* General body styling */
+        body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -60,17 +62,28 @@
       font-size: 14px;
     }
 
-    input {
+    input,
+    select {
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 5px;
       font-size: 16px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
-    input:focus {
+    input:focus,
+    select:focus {
       outline: none;
       border-color: #007BFF;
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+    select {
+      appearance: none;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23007BFF" d="M2 0L0 2h4z"/></svg>') no-repeat right 10px center;
+      background-size: 12px 12px;
+      cursor: pointer;
     }
 
     /* Button styling */
@@ -87,11 +100,19 @@
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
     }
 
     button:hover {
       background-color: #0056b3;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
+
+    button:active {
+      background-color: #004080;
+      box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
   </style>
 </head>
 <body>
@@ -105,9 +126,21 @@
       <!-- Reminder 1 -->
       <div class="form-group">
         <label for="time1">Time for Reminder 1:</label>
-        <input id="time1" type="time" id="time1" required>
+        <input id="time1" type="time" required>
+      
         <label for="reason1">Reason for Reminder 1:</label>
-        <input id="reason1" type="text" id="reason1" placeholder="Enter the reason..." required>
+        <input id="reason1" type="text" placeholder="Enter the reason..." required>
+      
+        <label for="options1">Choose an Option:</label>
+        <select id="options1" name="options1" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="medication">Take Medication</option>
+          <option value="hydration">Drink Water</option>
+          <option value="exercise">Exercise</option>
+          <option value="meal">Eat a Meal</option>
+          <option value="appointment">Attend Appointment</option>
+          <option value="rest">Take a Rest</option>
+        </select>
       </div>
 
       <!-- Reminder 2 -->
@@ -116,6 +149,16 @@
         <input id="time2" type="time" id="time2" required>
         <label for="reason2">Reason for Reminder 2:</label>
         <input id="reason2" type="text" id="reason2" placeholder="Enter the reason..." required>
+        <label for="options2">Choose an Option:</label>
+        <select id="options2" name="options2" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="medication">Take Medication</option>
+          <option value="hydration">Drink Water</option>
+          <option value="exercise">Exercise</option>
+          <option value="meal">Eat a Meal</option>
+          <option value="appointment">Attend Appointment</option>
+          <option value="rest">Take a Rest</option>
+        </select>
       </div>
 
       <!-- Reminder 3 -->
@@ -124,6 +167,16 @@
         <input id="time3" type="time" id="time3" required>
         <label for="reason3">Reason for Reminder 3:</label>
         <input id="reason3" type="text" id="reason3" placeholder="Enter the reason..." required>
+        <label for="options3">Choose an Option:</label>
+        <select id="options3" name="options3" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="medication">Take Medication</option>
+          <option value="hydration">Drink Water</option>
+          <option value="exercise">Exercise</option>
+          <option value="meal">Eat a Meal</option>
+          <option value="appointment">Attend Appointment</option>
+          <option value="rest">Take a Rest</option>
+        </select>
       </div>
 
       <!-- Reminder 4 -->
@@ -132,6 +185,16 @@
         <input id="time4" type="time" id="time4" required>
         <label for="reason4">Reason for Reminder 4:</label>
         <input id="reason4" type="text" id="reason4" placeholder="Enter the reason..." required>
+        <label for="options4">Choose an Option:</label>
+        <select id="options4" name="options4" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="medication">Take Medication</option>
+          <option value="hydration">Drink Water</option>
+          <option value="exercise">Exercise</option>
+          <option value="meal">Eat a Meal</option>
+          <option value="appointment">Attend Appointment</option>
+          <option value="rest">Take a Rest</option>
+        </select>
       </div>
 
       <!-- Reminder 5 -->
@@ -140,6 +203,16 @@
         <input id="time5" type="time" id="time5" required>
         <label for="reason5">Reason for Reminder 5:</label>
         <input id="reason5" type="text" id="reason5" placeholder="Enter the reason..." required>
+        <label for="options5">Choose an Option:</label>
+        <select id="options5" name="options5" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="medication">Take Medication</option>
+          <option value="hydration">Drink Water</option>
+          <option value="exercise">Exercise</option>
+          <option value="meal">Eat a Meal</option>
+          <option value="appointment">Attend Appointment</option>
+          <option value="rest">Take a Rest</option>
+        </select>
       </div>
 
       <!-- Reminder 6 -->
@@ -148,6 +221,16 @@
         <input id="time6" type="time" id="time6" required>
         <label for="reason6">Reason for Reminder 6:</label>
         <input id="reason6" type="text" id="reason6" placeholder="Enter the reason..." required>
+        <label for="options6">Choose an Option:</label>
+        <select id="options6" name="options6" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="medication">Take Medication</option>
+          <option value="hydration">Drink Water</option>
+          <option value="exercise">Exercise</option>
+          <option value="meal">Eat a Meal</option>
+          <option value="appointment">Attend Appointment</option>
+          <option value="rest">Take a Rest</option>
+        </select>
       </div>
     </div>
 
@@ -223,21 +306,33 @@
     let time4 = document.getElementById("time4").value;
     let time5 = document.getElementById("time5").value;
     let time6 = document.getElementById("time6").value;
-
+    let options1 = document.getElementById("options1").value;
+    let options2 = document.getElementById("options2").value;
+    let options3 = document.getElementById("options3").value;
+    let options4 = document.getElementById("options4").value;
+    let options5 = document.getElementById("options5").value;
+    let options6 = document.getElementById("options6").value;
+    
     // Save to Firebase
     set(ref(database, 'usersdskvj'), {
       reason1: reason1,
       time1: time1,
+      options1: options1,
       reason2: reason2,
       time2: time2,
+      options2: options2,
       reason3: reason3,
       time3: time3,
+      options3: options3,
       reason4: reason4,
       time4: time4,
+      options4: options4,
       reason5: reason5,
       time5: time5,
+      options5: options5,
       reason6: reason6,
-      time6: time6
+      time6: time6,
+      options6: options6
     });
 
     alert("Reminders have been set!");
