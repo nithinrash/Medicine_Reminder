@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Notifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Notifications</h1>
+    <p>Click the button below to send a notification to your phone.</p>
+    <button onclick="sendNotification()">Send Notification</button>
+
+    <script>
+        // Request notification permission
+        if ("Notification" in window) {
+            Notification.requestPermission().then(permission => {
+                if (permission !== "granted") {
+                    alert("Please enable notifications for this page to receive alerts.");
+                }
+            });
+        } else {
+            alert("Your browser does not support notifications.");
+        }
+
+        // Function to send a notification
+        function sendNotification() {
+            if (Notification.permission === "granted") {
+                const notification = new Notification("New Message!", {
+                    body: "You have received a new notification from your web app.",
+                    icon: "https://via.placeholder.com/100", // Replace with your app's icon URL
+                });
+
+                // Optionally handle click events on the notification
+                notification.onclick = () => {
+                    window.open("https://yourwebsite.com", "_blank"); // Replace with your target URL
+                };
+            } else {
+                alert("Notification permission is not granted!");
+            }
+        }
+    </script>
+</body>
+</html>
