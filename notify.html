@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Notifications</title>
+    <title>Mobile  s Notifications</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,31 +31,26 @@
     <button onclick="sendNotification()">Send Notification</button>
 
     <script>
-        // Request notification permission
-        if ("Notification" in window) {
+        // Request Notification Permission
+        if ('Notification' in window) {
             Notification.requestPermission().then(permission => {
-                if (permission !== "granted") {
-                    alert("Please enable notifications for this page to work properly.");
+                if (permission !== 'granted') {
+                    alert('Please enable notifications for this page.');
                 }
             });
         } else {
-            alert("Your browser does not support notifications.");
+            alert('Your browser does not support notifications.');
         }
 
-        // Function to send a notification
+        // Function to Send a Notification
         function sendNotification() {
-            if (Notification.permission === "granted") {
-                const notification = new Notification("Hello!", {
-                    body: "This is a test notification sent from your browser.",
-                    icon: "https://via.placeholder.com/100", // Replace with your app's icon
+            if (Notification.permission === 'granted') {
+                new Notification('Hello!', {
+                    body: 'This is your notification!',
+                    icon: 'https://via.placeholder.com/100', // Replace with your icon
                 });
-
-                // Optionally handle click events on the notification
-                notification.onclick = () => {
-                    window.open("https://example.com"); // URL to open on click
-                };
             } else {
-                alert("Please allow notifications to send messages.");
+                alert('Notifications are not enabled.');
             }
         }
     </script>
