@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Notifications</title>
+    <title>Mobile Notifications</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <h1>Web Notifications</h1>
+    <h1>Mobile Notifications</h1>
     <p>Click the button below to send a notification to your phone.</p>
     <button onclick="sendNotification()">Send Notification</button>
 
@@ -35,7 +35,7 @@
         if ("Notification" in window) {
             Notification.requestPermission().then(permission => {
                 if (permission !== "granted") {
-                    alert("Please enable notifications for this page to receive alerts.");
+                    alert("Please enable notifications for this page to work properly.");
                 }
             });
         } else {
@@ -45,17 +45,17 @@
         // Function to send a notification
         function sendNotification() {
             if (Notification.permission === "granted") {
-                const notification = new Notification("New Message!", {
-                    body: "You have received a new notification from your web app.",
-                    icon: "https://via.placeholder.com/100", // Replace with your app's icon URL
+                const notification = new Notification("Hello!", {
+                    body: "This is a test notification sent from your browser.",
+                    icon: "https://via.placeholder.com/100", // Replace with your app's icon
                 });
 
                 // Optionally handle click events on the notification
                 notification.onclick = () => {
-                    window.open("https://yourwebsite.com", "_blank"); // Replace with your target URL
+                    window.open("https://example.com"); // URL to open on click
                 };
             } else {
-                alert("Notification permission is not granted!");
+                alert("Please allow notifications to send messages.");
             }
         }
     </script>
