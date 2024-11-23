@@ -6,113 +6,219 @@
   <title>Medical Reminder Form</title>
   <style>
     /* General body styling */
-   
-        /* General body styling */
-        body {
+    body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa;
+      background-color: #f0f2f5;
       color: #333;
     }
 
     /* Container styling */
     #container {
-      max-width: 700px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border: 1px solid #e9ecef;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 16px;
     }
 
-    /* Title styling */
     #title_container {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     #title_container h1 {
       margin: 0;
       color: #007BFF;
-      font-size: 24px;
+      font-size: 28px;
+      margin-bottom: 8px;
     }
 
     #title_container p {
-      font-size: 14px;
-      color: #555;
+      font-size: 16px;
+      color: #666;
+      margin: 0;
     }
 
     /* Form container styling */
     #form_container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      display: grid;
+      gap: 24px;
+      margin-bottom: 30px;
     }
 
+    /* Card styling for each form group */
     .form-group {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-group:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Reminder number badge */
+    .form-group::before {
+      content: attr(data-reminder);
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      background: #007BFF;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style for each input group within the card */
+    .form-group > * {
+      margin-bottom: 16px;
+    }
+
+    .form-group > *:last-child {
+      margin-bottom: 0;
     }
 
     .form-group label {
-      font-weight: bold;
+      display: block;
+      font-weight: 600;
       font-size: 14px;
+      color: #444;
+      margin-bottom: 8px;
+      transition: color 0.2s ease;
     }
 
-    input,
-    select {
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+    .form-group:hover label {
+      color: #007BFF;
+    }
+
+    /* Input and select styling */
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e1e5eb;
+      border-radius: 8px;
       font-size: 16px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: border-color 0.3s, box-shadow 0.3s;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      background-color: white;
     }
 
-    input:focus,
-    select:focus {
+    .form-group input:focus,
+    .form-group select:focus {
       outline: none;
       border-color: #007BFF;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
     }
 
+    .form-group input::placeholder {
+      color: #aab0b7;
+    }
+
+    /* Custom select styling */
     select {
       appearance: none;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23007BFF" d="M2 0L0 2h4z"/></svg>') no-repeat right 10px center;
-      background-size: 12px 12px;
-      cursor: pointer;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23007BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 40px !important;
     }
 
-    /* Button styling */
+    /* Button container styling */
     #button_container {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     button {
       background-color: #007BFF;
-      color: #fff;
-      padding: 10px 20px;
+      color: white;
+      padding: 16px 32px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.3s, box-shadow 0.3s;
+      transition: all 0.2s ease;
+      min-width: 200px;
+      box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
     }
 
     button:hover {
       background-color: #0056b3;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
     }
 
     button:active {
-      background-color: #004080;
-      box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
     }
 
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      #container {
+        padding: 12px;
+        margin: 10px;
+      }
+
+      .form-group {
+        padding: 20px;
+      }
+
+      button {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    /* Add reminder numbers to form groups */
+    .form-group:nth-of-type(1)::before { content: "1"; }
+    .form-group:nth-of-type(2)::before { content: "2"; }
+    .form-group:nth-of-type(3)::before { content: "3"; }
+    .form-group:nth-of-type(4)::before { content: "4"; }
+    .form-group:nth-of-type(5)::before { content: "5"; }
+    .form-group:nth-of-type(6)::before { content: "6"; }
+
+    /* Optional: Add subtle animations for loading */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-group {
+      animation: fadeInUp 0.3s ease forwards;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.1s; }
+    .form-group:nth-child(2) { animation-delay: 0.2s; }
+    .form-group:nth-child(3) { animation-delay: 0.3s; }
+    .form-group:nth-child(4) { animation-delay: 0.4s; }
+    .form-group:nth-child(5) { animation-delay: 0.5s; }
+    .form-group:nth-child(6) { animation-delay: 0.6s; }
   </style>
 </head>
 <body>
@@ -126,7 +232,7 @@
       <!-- Reminder 1 -->
       <div class="form-group">
         <label for="time1">Time for Reminder 1:</label>
-        <input id="time1" type="time" required>
+        <input id="time1" type="time" step="60" required>
       
         <label for="reason1">Reason for Reminder 1:</label>
         <input id="reason1" type="text" placeholder="Enter the reason..." required>
@@ -268,6 +374,7 @@
       const time = document.getElementById(`time${i}`).value;
       const reason = document.getElementById(`reason${i}`).value;
 
+
       if (time && reason) {
         reminders.push({ time, reason });
       }
@@ -278,21 +385,30 @@
       return;
     }
 
+
+
+
+    
     reminders.forEach((reminder) => {
-      const now = new Date();
-      const reminderTime = new Date();
-      reminderTime.setHours(...reminder.time.split(":"), 0, 0);
+  const now = new Date();
+  const reminderTime = new Date();
+  const [hours, minutes] = reminder.time.split(':').map(Number);
+  
+  reminderTime.setHours(hours, minutes, 0, 0);
 
-      if (reminderTime < now) {
-        reminderTime.setDate(reminderTime.getDate() + 1);
-      }
+  if (reminderTime < now) {
+    reminderTime.setDate(reminderTime.getDate() + 1);
+  }
 
-      const delay = reminderTime - now;
-      setTimeout(function triggerReminder() {
-        alert(`Reminder: ${reminder.reason}`);
-        setTimeout(triggerReminder, 24 * 60 * 60 * 1000); // Repeat daily
-      }, delay);
-    });
+  const delay = reminderTime - now;
+  
+  setTimeout(function triggerReminder() {
+    // Format time in 24-hour for display
+    const timeStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    alert(`Reminder (${timeStr}): ${reminder.reason}`);
+    setTimeout(triggerReminder, 24 * 60 * 60 * 1000);
+  }, delay);
+});
 
     let reason1 = document.getElementById("reason1").value;
     let reason2 = document.getElementById("reason2").value;
